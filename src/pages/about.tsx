@@ -62,27 +62,27 @@ export const Head = (props: AboutProps) => {
   const { aboutPage } = props.data
   return <SEOHead {...aboutPage} />
 }
-export const query = graphql`
-  {
-    aboutPage {
-      id
-      title
-      description
-      image {
-        id
-        url
-      }
-      blocks: content {
-        id
-        blocktype
-        ...AboutHeroContent
-        ...AboutStatListContent
-        ...HomepageProductListContent
-        ...AboutLeadershipContent
-        ...HomepageBenefitListContent
-        ...AboutLogoListContent
-        ...HomepageCtaContent
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   {
+//     aboutPage {
+//       id
+//       title
+//       description
+//       image {
+//         id
+//         url
+//       }
+//       blocks: content {
+//         id
+//         blocktype
+//         ...AboutHeroContent
+//         ...AboutStatListContent
+//         ...HomepageProductListContent
+//         ...AboutLeadershipContent
+//         ...HomepageBenefitListContent
+//         ...AboutLogoListContent
+//         ...HomepageCtaContent
+//       }
+//     }
+//   }
+// `

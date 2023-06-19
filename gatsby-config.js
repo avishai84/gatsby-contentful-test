@@ -3,7 +3,7 @@ require("dotenv").config()
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-
+console.log(process.env)
 module.exports = {
   siteMetadata: {
     siteUrl: "https://gatsbycontentfulhomepage.gatsbyjs.io/",
@@ -35,6 +35,12 @@ module.exports = {
         background_color: "#ffe491",
         theme_color: "#004ca3",
         icon: "src/favicon.png",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
       },
     },
   ],
