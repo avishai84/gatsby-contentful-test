@@ -1,3 +1,16 @@
+const path = require('path');
+
+
+// exports.createPages = async ({ graphql, actions }) => {
+//     const { createPage } = actions;
+  
+
+// };
+
+
+
+
+
 const { documentToHtmlString } = require("@contentful/rich-text-html-renderer")
 const { getGatsbyImageResolver } = require("gatsby-plugin-image/graphql-utils")
 
@@ -612,8 +625,8 @@ exports.createSchemaCustomization = async ({ actions }) => {
   `)
 }
 
-exports.createPages = ({ actions }) => {
-  const { createSlice } = actions
+exports.createPages = async ({graphql, actions }) => {
+  const { createSlice, createPage } = actions
   createSlice({
     id: "header",
     component: require.resolve("./src/components/header.tsx"),
@@ -622,5 +635,35 @@ exports.createPages = ({ actions }) => {
     id: "footer",
     component: require.resolve("./src/components/footer.tsx"),
   })
+  // Fetch the necessary data from GraphQL
+  const result = await graphql(`
+  {
+    allContentfulDogBreeds(limit:1000){
+      nodes{
+        contentful_id
+        id
+        dogBreedName
+        breedOrigination
+        lifeExpectancy
+        maxLifeExpectancy
+        friendlinessOfTheBreed
+        shedLevel
+
+        }
+      }
+    }
+`);
+
+ // Create dynamic pages based on the fetched data
+ result.data.allContentfulDogBreeds.nodes.forEach((node) => {
+   createPage({
+     path: node.dogBreedName,
+     component: path.resolve('./src/pages/{dogBreedName}.tsx'),
+     context: {
+       dogBreedName: node.dogBreedName,
+       // Pass any additional props here
+     },
+   });
+ });
 }
       

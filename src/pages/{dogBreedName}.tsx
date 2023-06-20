@@ -24,8 +24,8 @@ interface ImageData {
         }
     }    
 }
-
-type Items =  {
+interface ContentfulDogBreedsProps {
+    contentful_id: string;
     id: string;
     dogBreedName: string;
     breedOrigination: string;
@@ -33,14 +33,12 @@ type Items =  {
     maxLifeExpectancy: number;
     friendlinessOfTheBreed:number;
     shedLevel: number;
-    dogImage?: ImageData;
+    dogImage: ImageData;
 };
 
-interface DataProps {
+interface PageBreedProps {
   data: {
-    allContentfulDogBreeds  : {
-        nodes: Items[];
-    }
+    contentfulDogBreeds: ContentfulDogBreedsProps;
   }
 };
 
@@ -50,20 +48,15 @@ const Username = styled.h2`
   color: #d23669;
 `
 
-const DogBreeds = ({data}:DataProps) => {
-  const { allContentfulDogBreeds } = data;
-  const { nodes } = allContentfulDogBreeds;
- console.log("data", data);
-  const dogs = nodes.map(({...item}:Items) => {
-    const {id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel} = item;
-    // const { fields } = dogImage;
-    // const { title, description, file } = fields;
-    // const { en_US } = file;
-    // const { url } = en_US;
+export default function Page({data}: PageBreedProps){
+  const { contentfulDogBreeds  } = data;
+  const { contentful_id, id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
+  console.log("props", data);
+
     const dogPanel = (
         <div key={id}>
-         <p>Go to Page: <Link to={`/${dogBreedName}`}>{dogBreedName}</Link></p> 
           <Container width="fullbleed">
+          <p>Go to: <Link to={`/`}>Home</Link></p> 
             <Box background="muted" radius="large">
               <Box center paddingY={5}>
                 <Heading>
@@ -91,29 +84,29 @@ const DogBreeds = ({data}:DataProps) => {
           </Container>
         </div>
     );
-    return dogPanel;
-  });
-
-
-  return(<>{dogs}</>)
+      return(<p>dog page {dogPanel}</p>)
 }
 
 export const pageQuery = graphql`
-{
-    allContentfulDogBreeds(limit:100){
-      nodes{
-        id
-        dogBreedName
-        breedOrigination
-        lifeExpectancy
-        maxLifeExpectancy
-        friendlinessOfTheBreed
-        shedLevel
-   
-        }
-      }
-    }
+query($dogBreedName: String!) {
+  contentfulDogBreeds(dogBreedName: { eq: $dogBreedName }) {
+    contentful_id
+    id
+    dogBreedName
+    breedOrigination
+    lifeExpectancy
+    maxLifeExpectancy
+    friendlinessOfTheBreed
+    shedLevel
+  }
+}
 `;
 
-export default DogBreeds;
+
+
+
+
+
+
+
 

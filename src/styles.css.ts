@@ -5,7 +5,7 @@ globalStyle("body", {
   margin: 0,
   fontFamily: theme.fonts.text,
   color: theme.colors.text,
-  backgroundColor: theme.colors.background,
+  backgroundColor: theme.colors.transparent,
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
 })

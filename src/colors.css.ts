@@ -5,4 +5,5 @@ export const colors = {
   muted: "#f5cc00",
   active: "#004287",
   black: "#000",
+  transparent: "rgba(355, 554, 220, .5)",
 }
