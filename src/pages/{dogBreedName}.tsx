@@ -1,10 +1,8 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql, Link, Slice } from "gatsby"
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
-import * as sections from "../components/sections"
-import Fallback from "../components/fallback"
-import SEOHead from "../components/head"
+
 import { Container, Box, Kicker, Heading, Text } from "../components/ui"
 
 import styled from "styled-components"
@@ -84,7 +82,7 @@ export default function Page({data}: PageBreedProps){
           </Container>
         </div>
     );
-      return(<p>dog page {dogPanel}</p>)
+      return(<p>dog page {dogPanel} </p>)
 }
 
 export const pageQuery = graphql`

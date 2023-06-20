@@ -4,25 +4,18 @@ import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
+import * as styles from "../components/ui.css"
 import SEOHead from "../components/head"
-import { Container, Box, Kicker, Heading, Text } from "../components/ui"
+import {Flex, Container, Box, Kicker, Heading, Text, CTALink } from "../components/ui"
+import * as containerStyles from "../dogStyle.module.css";
+import {Figure, MeterWithProps} from "../dogComponents/";
 
 import styled from "styled-components"
 
 interface ImageData {  
-    fields: {
-        title: {
-            en_US: string;
-          },
-          description: {
-            en_US:string;
-          }
-        file: {
-            en_US: {
-                url: string;
-            }
-        }
-    }    
+    alt: string;
+    url: string;
+    title: string;
 }
 
 type Items =  {
@@ -33,7 +26,7 @@ type Items =  {
     maxLifeExpectancy: number;
     friendlinessOfTheBreed:number;
     shedLevel: number;
-    dogImage?: ImageData;
+    dogImage: ImageData;
 };
 
 interface DataProps {
@@ -44,58 +37,69 @@ interface DataProps {
   }
 };
 
-const Username = styled.h2`
-  margin: 0 0 12px 0;
-  padding: 0;
-  color: #d23669;
-`
 
 const DogBreeds = ({data}:DataProps) => {
   const { allContentfulDogBreeds } = data;
   const { nodes } = allContentfulDogBreeds;
- console.log("data", data);
+
   const dogs = nodes.map(({...item}:Items) => {
-    const {id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel} = item;
-    // const { fields } = dogImage;
-    // const { title, description, file } = fields;
-    // const { en_US } = file;
-    // const { url } = en_US;
+    const {id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage} = item;
+    const { alt, title, url } = dogImage;
+
     const dogPanel = (
-        <div key={id}>
-         <p>Go to Page: <Link to={`/${dogBreedName}`}>{dogBreedName}</Link></p> 
-          <Container width="fullbleed">
-            <Box background="muted" radius="large">
-              <Box center paddingY={5}>
-                <Heading>
-                  <Kicker>{dogBreedName}</Kicker>
-                </Heading>
-                <Text>{breedOrigination}</Text>}
-              </Box>
-              <label htmlFor={`shedding${id}`}>Life Expectancy:</label>
-                <progress id={`shedding${id}`} max={maxLifeExpectancy} value={maxLifeExpectancy}> {maxLifeExpectancy} </progress>
-                <p>{lifeExpectancy}</p>
-                <p>{maxLifeExpectancy}</p>
-                <p>{friendlinessOfTheBreed}</p>
-                <p>{shedLevel}</p>
-                {/* <figure>
-                  <img
-                    src={url}
-                    alt={title.en_US}
-                    width={200}
-                    height={200}
-                
-                  />
-                  <figcaption>{description.en_US}</figcaption>
-                </figure> */}
+        <div key={id} className={containerStyles.tight}>
+            <Box background="primary" radius="button">
+              <Box center padding={5}>
+              <Link style={{color:'inherit'}} to={`/${dogBreedName}`}>
+                <Flex responsive={true}>
+                <Figure>
+                    <img
+                      src={url}
+                      alt={alt}
+                      width={90}
+                      height={90}
+                    />
+                  </Figure>
+                <Heading style={{fontSize:"2rem"}}>
+                    {dogBreedName}
+                  </Heading>
+                </Flex>
+             
+                </Link>
+                <Text>{breedOrigination}</Text>
+                <MeterWithProps
+                  id={id}
+                  min={0}
+                  max={20}
+                  title={"Life Expectancy"}
+                  maxLifeExpectancy={maxLifeExpectancy}
+                  measureText="years"
+                />
+                <MeterWithProps
+                  id={id}
+                  min={0}
+                  max={5}
+                  title={"Friendliness Of The Breed"}
+                  maxLifeExpectancy={friendlinessOfTheBreed}
+                  measureText="Friendly"
+                />
+                <MeterWithProps
+                  id={id}
+                  min={0}
+                  max={5}
+                  title={"Shed Level"}
+                  maxLifeExpectancy={shedLevel}
+                  measureText="Shedding"
+                />
+                </Box>
             </Box>
-          </Container>
+           
         </div>
     );
-    return dogPanel;
+    return(<>{dogPanel}</>);
   });
 
-
-  return(<>{dogs}</>)
+  return(<Container width="normal" ><Flex gap={1} gutter={1}>{dogs}</Flex></Container>)
 }
 
 export const pageQuery = graphql`
@@ -109,7 +113,11 @@ export const pageQuery = graphql`
         maxLifeExpectancy
         friendlinessOfTheBreed
         shedLevel
-   
+        dogImage{
+            alt
+            url
+            title
+          }
         }
       }
     }
