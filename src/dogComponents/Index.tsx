@@ -3,22 +3,22 @@ import styled, {css} from "styled-components"
 import {Flex} from "../components/ui"
 
 export const Span = styled.span`
-  border-radius: 50%,
-  border: 1px dashed red,
-  padding: 4px,
-  background: red,
-  width: 25px,
-  line-height: 1,
-  height: 25px,
-  font-size: 16px,
+  border-radius: 50%;
+  border: 1px dashed red;
+  padding: 4px;
+  background: red;
+  width: 25px;
+  line-height: 1;
+  height: 25px;
+  font-size: 16px;
 `;
 
  export const Image = styled.img`
-  object-fit: "cover",
-  max-width: "100%",
-  max-height: "100%",
-  width: "90px",
-  height: "90px"
+  object-fit: cover,
+  max-width: 100%,
+  max-height: 100%,
+  width: 90px,
+  height: 90px
 `;
 
 export const Figure = styled.figure`
@@ -40,14 +40,14 @@ export const Figure = styled.figure`
   }
   
 export const MeterComponent = styled.meter`
-padding:0;
-margin:0;
-line-height: 1.25rem;
-width: 150px;
-height: 1.25rem;
-border: 1px solid #ccc;
-border-radius: 3px;
-box-shadow: 5px 5px 15px rgb(0 0 0 / 50%);
+  padding:0;
+  margin:0;
+  line-height: 1.25rem;
+  width: 150px;
+  height: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 5px 5px 15px rgb(0 0 0 / 50%);
 `;
 
   export const MeterWithProps = ({title, id, maxLifeExpectancy, measureText, min="0", max="20"}:MeterProps) => {

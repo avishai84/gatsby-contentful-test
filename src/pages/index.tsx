@@ -43,46 +43,24 @@ const DogBreeds = ({data}:DataProps) => {
             <Box background="primary" radius="button">
               <Box center padding={5}>
               <Link style={{color:'inherit'}} to={`/${dogBreedName}`}>
-                <Flex responsive={true}>
+                
                 <Figure>
                     <img
                       src={url}
                       alt={alt}
-                      width={90}
-                      height={90}
+                      width={190}
+                      height={190}
                     />
                   </Figure>
+                <Flex responsive={true}>
+               
+                
                 <Heading style={{fontSize:"2rem"}}>
                     {dogBreedName}
                   </Heading>
                 </Flex>
-             
                 </Link>
-                <Text>{breedOrigination}</Text>
-                <MeterWithProps
-                  id={id}
-                  min={0}
-                  max={20}
-                  title={"Life Expectancy"}
-                  maxLifeExpectancy={maxLifeExpectancy}
-                  measureText="years"
-                />
-                <MeterWithProps
-                  id={id}
-                  min={0}
-                  max={5}
-                  title={"Friendliness Of The Breed"}
-                  maxLifeExpectancy={friendlinessOfTheBreed}
-                  measureText="Friendly"
-                />
-                <MeterWithProps
-                  id={id}
-                  min={0}
-                  max={5}
-                  title={"Shed Level"}
-                  maxLifeExpectancy={shedLevel}
-                  measureText="Shedding"
-                />
+                <Text variant="kicker">{breedOrigination}</Text>
                 </Box>
             </Box>
         </div>

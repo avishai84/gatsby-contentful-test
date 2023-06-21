@@ -29,19 +29,15 @@ interface PageBreedProps {
   }
 };
 
-
-
 export default function Page({data}: PageBreedProps){
   const { contentfulDogBreeds  } = data;
   const { contentful_id, id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
   const { alt, url, title } = dogImage;
-  console.log("props", data);
-
   const dogPanel = (
     <div key={id} className={containerStyles.tight}>
         <Box background="primary" radius="button">
           <Box center padding={5}>
-          <Link style={{color:'inherit'}} to={`/${dogBreedName}`}>
+         
             <Flex responsive={true}>
             <Figure>
               <Image 
@@ -56,8 +52,6 @@ export default function Page({data}: PageBreedProps){
                 {dogBreedName}
               </Heading>
             </Flex>
-         
-            </Link>
             <Text>{breedOrigination}</Text>
             <MeterWithProps
               id={id}
@@ -88,42 +82,7 @@ export default function Page({data}: PageBreedProps){
     </div>
 );
 
-
-
-
-
-    // const dogPanel = (
-    //     <div key={id}>
-    //       <Container width="fullbleed">
-    //       <p>Go to: <Link to={`/`}>Home</Link></p> 
-    //         <Box background="muted" radius="large">
-    //           <Box center paddingY={5}>
-    //             <Heading>
-    //               <Kicker>{dogBreedName}</Kicker>
-    //             </Heading>
-    //             <Text>{breedOrigination}</Text>
-    //           </Box>
-    //           <label htmlFor={`shedding${id}`}>Life Expectancy:</label>
-    //             <progress id={`shedding${id}`} max={maxLifeExpectancy} value={maxLifeExpectancy}> {maxLifeExpectancy} </progress>
-    //             <p>{lifeExpectancy}</p>
-    //             <p>{maxLifeExpectancy}</p>
-    //             <p>{friendlinessOfTheBreed}</p>
-    //             <p>{shedLevel}</p>
-    //             <figure>
-    //               <img
-    //                 src={url}
-    //                 alt={alt}
-    //                 width={200}
-    //                 height={200}
-                
-    //               />
-    //               <figcaption>{title}</figcaption>
-    //             </figure>
-    //         </Box>
-    //       </Container>
-    //     </div>
-    // );
-      return(<p>dog page {dogPanel} </p>)
+      return(<><Link style={{color:'inherit'}} to={'/'}>Home</Link>{dogPanel}</>)
 }
 
 export const pageQuery = graphql`
