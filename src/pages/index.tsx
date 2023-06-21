@@ -16,7 +16,7 @@ const DogBreeds = ({ data }: DataProps) => {
 
     const dogPanel = (
       <div key={`${id}${dogBreedName}`} className={containerStyles.tight}>
-        <Box background="primary" radius="button" key={`${id}${breedOrigination}`}>
+        <Box background="primary" radius="button">
           <Box center padding={5}>
             <Link style={{ color: "inherit" }} to={`/${dogBreedName}`}>
               <Flex responsive={true}>
@@ -33,7 +33,7 @@ const DogBreeds = ({ data }: DataProps) => {
         </Box>
       </div>
     )
-    return <>{dogPanel}</>
+    return <div key={`${id}${breedOrigination}`}>{dogPanel}</div>
   })
 
   return (
