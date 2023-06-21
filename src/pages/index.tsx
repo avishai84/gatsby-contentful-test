@@ -1,28 +1,20 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
-import Layout from "../components/layout"
-import * as sections from "../components/sections"
-import Fallback from "../components/fallback"
-import * as styles from "../components/ui.css"
-import SEOHead from "../components/head"
-import {Flex, Container, Box, Kicker, Heading, Text, CTALink } from "../components/ui"
+import {Flex, Container, Box, Heading, Text } from "../components/ui"
 import * as containerStyles from "../dogStyle.module.css";
 import {Figure, MeterWithProps} from "../dogComponents/";
-
-import styled from "styled-components"
 
 interface ImageData {  
     alt: string;
     url: string;
-    title: string;
+    title?: string;
 }
 
 type Items =  {
     id: string;
     dogBreedName: string;
     breedOrigination: string;
-    lifeExpectancy: number;
+    lifeExpectancy?: number;
     maxLifeExpectancy: number;
     friendlinessOfTheBreed:number;
     shedLevel: number;
@@ -43,8 +35,8 @@ const DogBreeds = ({data}:DataProps) => {
   const { nodes } = allContentfulDogBreeds;
 
   const dogs = nodes.map(({...item}:Items) => {
-    const {id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage} = item;
-    const { alt, title, url } = dogImage;
+    const {id, dogBreedName, breedOrigination, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage} = item;
+    const { alt, url } = dogImage;
 
     const dogPanel = (
         <div key={id} className={containerStyles.tight}>
@@ -93,7 +85,6 @@ const DogBreeds = ({data}:DataProps) => {
                 />
                 </Box>
             </Box>
-           
         </div>
     );
     return(<>{dogPanel}</>);
@@ -104,19 +95,17 @@ const DogBreeds = ({data}:DataProps) => {
 
 export const pageQuery = graphql`
 {
-    allContentfulDogBreeds(limit:100){
+  allContentfulDogBreeds(limit:100){
       nodes{
         id
         dogBreedName
         breedOrigination
-        lifeExpectancy
         maxLifeExpectancy
         friendlinessOfTheBreed
         shedLevel
         dogImage{
             alt
             url
-            title
           }
         }
       }
