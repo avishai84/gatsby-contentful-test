@@ -3,26 +3,8 @@ import { graphql, Link } from "gatsby"
 import { Flex, Container, Box, Heading, Text } from "../components/ui"
 import * as containerStyles from "../dogStyle.module.css"
 import { Figure, Image } from "../dogComponents/Index"
-interface ImageData {
-  alt: string
-  url: string
-  title?: string
-}
+import {Item, DataProps} from "../types";
 
-interface Item {
-  id: string
-  dogBreedName: string
-  breedOrigination: string
-  dogImage: ImageData
-}
-
-interface DataProps {
-  data: {
-    allContentfulDogBreeds: {
-      nodes: Item[]
-    }
-  }
-}
 
 const DogBreeds = ({ data }: DataProps) => {
   const { allContentfulDogBreeds } = data

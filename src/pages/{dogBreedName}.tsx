@@ -3,29 +3,7 @@ import { graphql, Link } from "gatsby"
 import {Flex, Box, Heading, Text } from "../components/ui"
 import * as containerStyles from "../dogStyle.module.css";
 import {Figure, MeterWithProps, Image} from "../dogComponents/";
-
-
-interface ImageData {  
-    alt: string;
-    url: string;
-    title: string;
-}
-interface ContentfulDogBreedsProps {
-    id: string;
-    dogBreedName: string;
-    breedOrigination: string;
-    lifeExpectancy: number;
-    maxLifeExpectancy: number;
-    friendlinessOfTheBreed:number;
-    shedLevel: number;
-    dogImage: ImageData;
-};
-
-interface PageBreedProps {
-  data: {
-    contentfulDogBreeds: ContentfulDogBreedsProps;
-  }
-};
+import {PageBreedProps} from "../types";
 
 export default function Page({data}: PageBreedProps){
   const { contentfulDogBreeds  } = data;

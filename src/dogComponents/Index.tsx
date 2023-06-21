@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import {Flex} from "../components/ui"
+import {MeterProps} from "../types";
 
 export const Span = styled.span`
   border-radius: 50%;
@@ -32,15 +33,6 @@ export const Figure = styled.figure`
   box-shadow: 5px 5px 15px rgb(0 0 0 / 50%);
   background-color: #fff;
   `;
-
-  interface MeterProps {
-    title: string;
-    id: string;
-    maxLifeExpectancy?: number;
-    min:  number | string;
-    max:  number | string;
-    measureText: string;
-  }
   
 export const MeterComponent = styled.meter`
   padding:0;
