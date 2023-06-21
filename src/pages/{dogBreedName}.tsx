@@ -1,10 +1,9 @@
 import * as React from "react"
-import { graphql, Link, Slice } from "gatsby"
-import {Flex, Container, Box, Heading, Text } from "../components/ui"
+import { graphql, Link } from "gatsby"
+import {Flex, Box, Heading, Text } from "../components/ui"
 import * as containerStyles from "../dogStyle.module.css";
 import {Figure, MeterWithProps, Image} from "../dogComponents/";
 
-import styled from "styled-components"
 
 interface ImageData {  
     alt: string;
@@ -12,7 +11,6 @@ interface ImageData {
     title: string;
 }
 interface ContentfulDogBreedsProps {
-    contentful_id: string;
     id: string;
     dogBreedName: string;
     breedOrigination: string;
@@ -31,13 +29,12 @@ interface PageBreedProps {
 
 export default function Page({data}: PageBreedProps){
   const { contentfulDogBreeds  } = data;
-  const { contentful_id, id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
+  const { id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
   const { alt, url, title } = dogImage;
   const dogPanel = (
     <div key={id} className={containerStyles.tight}>
         <Box background="primary" radius="button">
           <Box center padding={5}>
-         
             <Flex responsive={true}>
             <Figure>
               <Image 
@@ -79,16 +76,20 @@ export default function Page({data}: PageBreedProps){
             />
             </Box>
         </Box>
-    </div>
-);
+      </div>);
 
-      return(<><Link style={{color:'inherit'}} to={'/'}>Home</Link>{dogPanel}</>)
+      return(<>
+      <Box background="muted">
+       <Link style={{color:'inherit'}} to={'/'}>Home</Link>
+      </Box>
+      {dogPanel}
+      <Box background="muted">&nbsp;</Box>
+    </>)
 }
 
 export const pageQuery = graphql`
 query($dogBreedName: String!) {
   contentfulDogBreeds(dogBreedName: { eq: $dogBreedName }) {
-    contentful_id
     id
     dogBreedName
     breedOrigination

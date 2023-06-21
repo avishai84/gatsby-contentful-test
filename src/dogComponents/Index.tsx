@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled, {css} from "styled-components"
+import styled from "styled-components"
 import {Flex} from "../components/ui"
 
 export const Span = styled.span`
@@ -13,12 +13,15 @@ export const Span = styled.span`
   font-size: 16px;
 `;
 
- export const Image = styled.img`
-  object-fit: cover,
-  max-width: 100%,
-  max-height: 100%,
-  width: 90px,
-  height: 90px
+interface ImageProps {
+  width:string; height:string
+}
+ export const Image = styled.img<ImageProps>`
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: ${props => props.$width || "90px"};
+  height: ${props => props.$height || "90px"};
 `;
 
 export const Figure = styled.figure`
