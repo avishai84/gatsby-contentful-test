@@ -15,8 +15,8 @@ const DogBreeds = ({ data }: DataProps) => {
     const { alt, url } = dogImage
 
     const dogPanel = (
-      <div key={id} className={containerStyles.tight}>
-        <Box background="primary" radius="button">
+      <div key={`${id}${dogBreedName}`} className={containerStyles.tight}>
+        <Box background="primary" radius="button" key={`${id}${breedOrigination}`}>
           <Box center padding={5}>
             <Link style={{ color: "inherit" }} to={`/${dogBreedName}`}>
               <Flex responsive={true}>

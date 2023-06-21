@@ -7,7 +7,7 @@ import {PageBreedProps} from "../types";
 
 export default function Page({data}: PageBreedProps){
   const { contentfulDogBreeds  } = data;
-  const { id, dogBreedName, breedOrigination, lifeExpectancy, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
+  const { id, dogBreedName, breedOrigination, maxLifeExpectancy, friendlinessOfTheBreed, shedLevel, dogImage } = contentfulDogBreeds;
   const { alt, url, title } = dogImage;
   const dogPanel = (
     <div key={id} className={containerStyles.tight}>
@@ -29,7 +29,7 @@ export default function Page({data}: PageBreedProps){
             </Flex>
             <Text>{breedOrigination}</Text>
             <MeterWithProps
-              id={id}
+              id={`${id}${maxLifeExpectancy}`}
               min={0}
               max={20}
               title={"Life Expectancy"}
@@ -37,7 +37,7 @@ export default function Page({data}: PageBreedProps){
               measureText="years"
             />
             <MeterWithProps
-              id={id}
+              id={`${id}${friendlinessOfTheBreed}`}
               min={0}
               max={5}
               title={"Friendliness Of The Breed"}
@@ -45,7 +45,7 @@ export default function Page({data}: PageBreedProps){
               measureText="Friendly"
             />
             <MeterWithProps
-              id={id}
+              id={`${id}${shedLevel}`}
               min={0}
               max={5}
               title={"Shed Level"}
