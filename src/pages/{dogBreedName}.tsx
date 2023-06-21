@@ -4,6 +4,7 @@ import {Flex, Box, Heading, Text } from "../components/ui"
 import * as containerStyles from "../dogStyle.module.css";
 import {Figure, MeterWithProps, Image} from "../dogComponents/";
 import {PageBreedProps} from "../types";
+// TODO: Add proper titles for each breed and measure description in contentful.
 
 export default function Page({data}: PageBreedProps){
   const { contentfulDogBreeds  } = data;

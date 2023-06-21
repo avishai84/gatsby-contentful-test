@@ -1,10 +1,9 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { Flex, Container, Box, Heading, Text } from "../components/ui"
-import * as containerStyles from "../dogStyle.module.css"
 import { Figure, Image } from "../dogComponents/Index"
 import {Item, DataProps} from "../types";
-
+import * as containerStyles from "../dogStyle.module.css"
 
 const DogBreeds = ({ data }: DataProps) => {
   const { allContentfulDogBreeds } = data

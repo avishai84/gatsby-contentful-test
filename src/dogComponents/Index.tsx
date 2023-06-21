@@ -46,7 +46,7 @@ export const MeterComponent = styled.meter`
 `;
 
   export const MeterWithProps = ({title, id, maxLifeExpectancy, measureText, min="0", max="20"}:MeterProps) => {
-  
+  // good idea to add min/max value from Contentful and pass those in the props
     return(
         <>
           <p><label htmlFor={title.concat(id)}>{title}:</label></p>
