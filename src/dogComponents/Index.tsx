@@ -56,7 +56,7 @@ export const MeterComponent = styled.meter`
   export const MeterWithProps = ({title, id, maxLifeExpectancy, measureText, min="0", max="20"}:MeterProps) => {
   
     return(
-      <>
+        <>
           <p><label htmlFor={title.concat(id)}>{title}:</label></p>
           <Flex>
           <small>{min} {measureText}</small>
