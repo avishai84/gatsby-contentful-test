@@ -1,6 +1,37 @@
-<a href="https://www.gatsbyjs.com">
-  <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-</a>
+### Clone the repository by running the following command in your preferred directory:
+```js
+git clone https://github.com/avishai84/gatsby-contentful-test.git
+
+```
+
+- Set up the local environment file with the token to connect to the Contentful API.
+-  Create a new file at the root of your project called .env.development 
+-  You'll need a token to connect
+-  
+ CONTENTFUL_SPACE_ID="secretID"
+
+CONTENTFUL_ACCESS_TOKEN="secretID"
+
+CONTENTFUL_HOST="cdn.contentful.com"
+
+- Install all project dependencies by running 
+
+```js
+  npm i
+```
+
+- Finally, run the following command to start the project on your local machine:
+
+- ```js
+npm run develop
+```
+
+- If everything is set up correctly, you should be able to access the project at the following URL: http://localhost:8000/
+
+
+
+-------------
+
 
 # Gatsby Starter Contentful Homepage
 
